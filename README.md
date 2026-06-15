@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+✦ AI Trip Planner ✦
+Welcome to the AI Trip Planner project! This is a state-of-the-art, premium web application designed to generate, manage, and customize personalized travel itineraries using AI. Featuring a responsive glassmorphic "Cosmic" dark design system, interactive mapping, real-time weather forecasts, high-fidelity PDF exporting, and fully-featured Admin RBAC with EmailJS-driven 2FA authentication, it delivers an exceptional user and administrator experience.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🌌 Key Highlights & Features
+👤 Traveler Experience
+Interactive AI Generation Dashboard: Input destinations, choose travel duration, select budget profiles, specify traveler compositions (solo, couple, family, friends), pick areas of interest, and generate custom AI itineraries.
+Saved Trips Console: Access, view, edit, and delete saved itineraries.
+High-Fidelity PDF Exporter: Export generated itineraries into beautiful, print-ready PDF files with custom styles, headers, and structured tables.
+Maps & Weather Integration: Embedded maps and weather forecasts corresponding to chosen destinations for seamless travel preparation.
+🛡️ Administrative Controls & Security
+Role-Based Access Control (RBAC): Custom routing middleware (ProtectedRoutes.js) separating regular travelers (USER) and system operators (ADMIN).
+2FA OTP Verification: The Admin Portal uses EmailJS to send a 2-Factor Authentication One-Time Password (OTP) to registered admin emails for verification during login.
+Admin Management Hub: View and manage all registered users, generated trips, and bookings.
+🛠️ Technology Stack
+Framework: React 19 & React Router DOM v7
+UI Styling: Vanilla CSS + Bootstrap 5 for fluid responsive grids, enhanced with a custom Cosmic Glassmorphic Design System (custom input elements, smooth floating animations, gradient accents, and dark/space theme styling utilizing the modern Outfit font).
+Mapping & Geo-Location: Leaflet & React Leaflet v5 for interactive tile-map renderings.
+PDF Generation: jsPDF for client-side document layout design and distribution.
+Communications: @emailjs/browser for secure OTP email dispatching.
+Client Networking: Axios for API requests.
+📁 Directory & File Layout
+Below is the layout of the project, detailing the roles of the main files:
 
-## Available Scripts
+AI Trip Planner/
+├── package.json              # Root dependencies (package aliases)
+└── frontend/                 # Main frontend application workspace
+    ├── package.json          # Frontend dependencies & scripts
+    ├── .env                  # Configuration variables (EmailJS keys, etc.)
+    ├── public/               # Public assets & static index template
+    └── src/                  # Application source code
+        ├── App.js            # Main React router config and layout setup
+        ├── App.css           # Global fallback styling
+        ├── index.js          # App entry point (ReactDOM mounting, CSS imports)
+        ├── index.css         # Cosmic Glassmorphic Design System configuration
+        ├── components/       # Reusable user interface widgets
+        │   ├── Navbar.js            # Cosmic navigation bar (RBAC-aware)
+        │   ├── ProtectedRoutes.js   # Route guards verifying token/role
+        │   ├── Weather.js           # Live destination weather widgets
+        │   ├── MapComponent.js      # Map display interface
+        │   └── TripImage.js         # Contextual image fetcher for destinations
+        ├── pages/            # View pages mapped to application routes
+        │   ├── Home.js              # Introduction landing page
+        │   ├── login.js             # User login portal
+        │   ├── Signup.js            # User registration portal
+        │   ├── Dashboard.js         # The AI trip planner customization wizard
+        │   ├── SavedTrips.js        # Traveler saved itineraries dashboard
+        │   ├── AdminLogin.js        # Admin login portal with 2FA/OTP execution
+        │   ├── AdminSignup.js       # Admin registration page
+        │   ├── AdminDashboard.js    # Operational overview metrics console
+        │   ├── ManageUsers.js       # User accounts lookup/deletion controls
+        │   ├── ManageTrips.js       # Custom generated trips review center
+        │   └── ManageBookings.js    # Booking logs administration interface
+        └── services/         # API clients and utilities
+            ├── api.js               # Centralized Axios base & API requests
+            └── pdfExporter.js       # Advanced jsPDF layout creator
+🚀 Setting Up the Project
+1. Installation
+To get started with the project, clone this repository, install the dependencies, and configure the project:
 
-In the project directory, you can run:
+# 1. Install frontend packages
+cd frontend
+npm install
+2. Configure Environment Variables
+Inside the frontend folder, locate the .env file and replace the placeholder credentials with your EmailJS details:
 
-### `npm start`
+# EmailJS Configurations for Admin 2FA OTP
+REACT_APP_EMAILJS_SERVICE_ID=your_service_id_here
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id_here
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key_here
+3. Run the Development Server
+Run the local server inside the frontend directory:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm start
+The application will launch by default at http://localhost:3000.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🎨 Theme Guidelines & Design System
+The application's theme is defined in frontend/src/index.css using modern CSS variables. Key variables include:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--bg-space: Base dark theme background color.
+--gradient-cosmic: Vibrant violet-to-cyan gradient for high-quality accents and primary interactive elements.
+--card-glass: Semi-transparent card styling with blur effects (backdrop-filter: blur(16px)).
+Typography: Uses the Outfit Google Font for high-readability modern typography.
